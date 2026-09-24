@@ -1,9 +1,9 @@
-﻿// Helpers compartidos
+// Helpers compartidos
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 
 function formatReg(reg) {
     let html = `<div style="background: rgba(0,0,0,0.2); border-left: 3px solid #ffbfa0; padding: 6px; margin: 4px 0; border-radius: 0 4px 4px 0; line-height: 1.2;">`;
-    html += `<div style="color: #ffbfa0; font-weight: bold; font-size: 0.75rem; margin-bottom: 5px; letter-spacing: 0.5px;">ðŸ“¥ REGISTRO LEÃDO:</div>`;
+    html += `<div style="color: #ffbfa0; font-weight: bold; font-size: 0.75rem; margin-bottom: 5px; letter-spacing: 0.5px;">📥 REGISTRO LEÍDO:</div>`;
     html += `<div style="display: flex; flex-wrap: wrap; gap: 5px;">`;
     for (const [key, value] of Object.entries(reg)) {
         html += `<div style="background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.05); padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
@@ -38,4 +38,3 @@ function setButtons(simId, init, step, play, pause, res) {
 /* =========================================
    SIMULADOR 1: PREVIAJE (Totales Columna)
    ========================================= */
-
