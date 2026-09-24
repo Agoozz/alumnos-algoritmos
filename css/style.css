@@ -1,0 +1,98 @@
+/* Animación Celda Activa */
+table td.active-cell {
+    background-color: #ffa87d !important; /* Naranja más vivo para destacar */
+    color: #5c4a40 !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(255, 168, 125, 0.8);
+    z-index: 10;
+    position: relative;
+    font-weight: 900 !important;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #ff8854 !important;
+}
+
+/* Animación Celdas de Totales */
+table td.active-total-cell {
+    background-color: #a0e8c5 !important; /* Verde menta pastel para totales */
+    color: #1e5c41 !important;
+    transform: scale(1.15);
+    box-shadow: 0 0 15px rgba(160, 232, 197, 0.8);
+    z-index: 9;
+    position: relative;
+    font-weight: 900 !important;
+    transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: 2px solid #55c793 !important;
+}
+
+/* Transiciones de tabla */
+.table td, .table th {
+    transition: background-color 0.2s, transform 0.2s;
+    min-width: 50px;
+    color: #5c4a40;
+    border-color: #ffecd9;
+}
+
+/* ====================================================
+   TEMA NARANJA PASTEL / DURAZNO
+   Sobreescritura de clases Bootstrap para decorar
+   ==================================================== */
+
+/* Fondo de la página */
+body {
+    background: linear-gradient(135deg, #fff5eb 0%, #ffe0cc 100%) !important;
+    color: #5c4a40 !important;
+}
+
+/* Tarjetas y Contenedores */
+.card, .nav-pills {
+    background-color: rgba(255, 255, 255, 0.95) !important;
+    border: none !important;
+    box-shadow: 0 8px 16px rgba(255, 191, 160, 0.2) !important;
+    border-radius: 16px !important;
+}
+.card-header {
+    background-color: transparent !important;
+    border-bottom: 2px dashed #ffbfa0 !important;
+}
+
+/* Textos y Alertas */
+h2.text-primary, h5.text-dark { color: #e67345 !important; font-weight: 800 !important; }
+.alert-info, .alert-danger {
+    background-color: #fff5eb !important;
+    border-color: #ffbfa0 !important;
+    color: #b56240 !important;
+    border-radius: 12px;
+}
+.text-muted { color: #b56240 !important; opacity: 0.8; }
+
+/* Pestañas (Tabs) */
+.nav-pills .nav-link { color: #e67345; font-weight: bold; border-radius: 10px; margin: 0 4px; }
+.nav-pills .nav-link.active { background-color: #ffbfa0 !important; color: #5c4a40 !important; box-shadow: 0 4px 8px rgba(255, 191, 160, 0.4); }
+.nav-pills .text-danger { color: #ff9f73 !important; }
+
+/* Botones Pasteles */
+.btn { border-radius: 10px !important; font-weight: 600 !important; letter-spacing: 0.3px; }
+.btn-primary { background-color: #ffbfa0 !important; border-color: #ffbfa0 !important; color: #5c4a40 !important; }
+.btn-primary:hover:not(:disabled) { background-color: #ffa87d !important; }
+
+.btn-outline-secondary { border-color: #ffdab9 !important; color: #b56240 !important; background-color: white !important; }
+.btn-outline-secondary:hover:not(:disabled) { background-color: #ffdab9 !important; color: #5c4a40 !important; }
+
+.btn-warning { background-color: #ffcdb2 !important; border-color: #ffcdb2 !important; color: #5c4a40 !important; }
+.btn-warning:hover:not(:disabled) { background-color: #ffb894 !important; }
+
+.btn-success { background-color: #e2cbb0 !important; border-color: #e2cbb0 !important; color: #5c4a40 !important; }
+.btn-success:hover:not(:disabled) { background-color: #d1b79b !important; }
+
+.btn-danger { background-color: #ff9f73 !important; border-color: #ff9f73 !important; color: white !important; }
+.btn-danger:hover:not(:disabled) { background-color: #ff8854 !important; }
+
+/* Tablas (Fondos Pasteles) */
+.table-light, .table-light th { background-color: #fff0e0 !important; color: #e67345 !important; }
+.table-secondary, .table-secondary th, .table-secondary td { background-color: #ffe0cc !important; color: #b56240 !important; }
+.table-warning, .table-warning th, .table-warning td { background-color: #ffcdb2 !important; color: #b56240 !important; }
+td.bg-light { background-color: #fff5eb !important; color: #b56240 !important; }
+
+/* Terminal Consola */
+.text-bg-dark { background-color: #4a3b32 !important; color: #ffe0cc !important; }
+.text-bg-dark .card-header { border-bottom-color: #6e594b !important; color: #ffbfa0 !important; border-bottom: 2px dashed #6e594b !important; }
