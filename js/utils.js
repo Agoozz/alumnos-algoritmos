@@ -34,7 +34,3 @@ function setButtons(simId, init, step, play, pause, res) {
     document.getElementById(`btn-pause-${simId}`).disabled = !pause;
     document.getElementById(`btn-res-${simId}`).disabled = !res;
 }
-
-/* =========================================
-   SIMULADOR 1: PREVIAJE (Totales Columna)
-   ========================================= */

@@ -1,4 +1,5 @@
-const Sim4 = {GEN: 2, TALLES: 3, COLORES: 3,
+const Sim4 = {
+    GEN: 2, TALLES: 3, COLORES: 3,
     nomGen: ["", "Hombre", "Mujer"],
     nomTalles: ["", "Small", "Medium", "Large"],
     nomColors: ["", "Rojo", "Verde", "Azul"],
@@ -60,28 +61,24 @@ const Sim4 = {GEN: 2, TALLES: 3, COLORES: 3,
         const {g, t, c, cant} = reg_obj;
         writeCon('console-4', formatReg(reg_obj));
         
-        // 1. Celda principal
         this.matriz[g][t][c] += cant;
         let c1 = document.getElementById(`s4-g${g}-t${t}-c${c}`);
         c1.classList.add('active-cell'); this.updateDOM(g, t, c);
         writeCon('console-4', `↳ Celda: matriz[${t}][${c}][${g}] := matriz[${t}][${c}][${g}] + ${cant}`, true);
         await sleep(500); c1.classList.remove('active-cell');
         
-        // 2. Col total
         this.matriz[g][t][this.COLORES+1] += cant;
         let c2 = document.getElementById(`s4-g${g}-t${t}-c${this.COLORES+1}`);
         c2.classList.add('active-total-cell'); this.updateDOM(g, t, this.COLORES+1);
         writeCon('console-4', `↳ Total Fila: matriz[${t}][${this.COLORES+1}][${g}] := matriz[${t}][${this.COLORES+1}][${g}] + ${cant}`, true);
         await sleep(500); c2.classList.remove('active-total-cell');
         
-        // 3. Row total
         this.matriz[g][this.TALLES+1][c] += cant;
         let c3 = document.getElementById(`s4-g${g}-t${this.TALLES+1}-c${c}`);
         c3.classList.add('active-total-cell'); this.updateDOM(g, this.TALLES+1, c);
         writeCon('console-4', `↳ Total Col: matriz[${this.TALLES+1}][${c}][${g}] := matriz[${this.TALLES+1}][${c}][${g}] + ${cant}`, true);
         await sleep(500); c3.classList.remove('active-total-cell');
         
-        // 4. Grand total
         this.matriz[g][this.TALLES+1][this.COLORES+1] += cant;
         let c4 = document.getElementById(`s4-g${g}-t${this.TALLES+1}-c${this.COLORES+1}`);
         c4.classList.add('active-total-cell'); this.updateDOM(g, this.TALLES+1, this.COLORES+1);

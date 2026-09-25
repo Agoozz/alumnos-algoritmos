@@ -1,4 +1,5 @@
-const Sim1 = {DESTINOS: 7, MESES: 10,
+const Sim1 = {
+    DESTINOS: 7, MESES: 10,
     provs: ["", "Bs. Aires", "Córdoba", "Mendoza", "Salta", "Misiones", "Neuquén", "Río Negro"],
     archivo: [], matriz: [], isAnimating: false, isPaused: false,
     
@@ -10,7 +11,9 @@ const Sim1 = {DESTINOS: 7, MESES: 10,
             dest: Math.floor(Math.random()*this.DESTINOS + 1),
             monto: Math.floor(Math.random()*400+10)*100
         }));
+        
         this.matriz = Array(this.DESTINOS + 1).fill().map(() => Array(this.MESES + 2).fill(0));
+        
         this.render();
         document.getElementById('console-1').innerHTML = '';
         writeCon('console-1', `> Archivo cargado (${this.archivo.length} registros).`);
@@ -47,17 +50,14 @@ const Sim1 = {DESTINOS: 7, MESES: 10,
         const reg = this.archivo.shift();
         const {dest, mes, monto} = reg;
         
-        // Log general
         writeCon('console-1', formatReg(reg));
         
-        // Animación Celda Principal
         this.matriz[dest][mes] += monto;
         let c1 = document.getElementById(`s1-c${dest}-${mes}`);
         c1.classList.add('active-cell'); this.updateDOM(dest, mes);
         writeCon('console-1', `↳ Celda: matriz[${dest}][${mes}] := matriz[${dest}][${mes}] + ${monto}`, true);
         await sleep(600); c1.classList.remove('active-cell');
         
-        // Animación Celda Total
         this.matriz[dest][this.MESES+1] += monto;
         let c2 = document.getElementById(`s1-c${dest}-${this.MESES+1}`);
         c2.classList.add('active-total-cell'); this.updateDOM(dest, this.MESES+1);

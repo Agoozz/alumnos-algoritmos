@@ -1,4 +1,6 @@
-const Sim2 = {TRIMESTRES: 4, SUCURSALES: 5,
+const Sim2 = {
+    TRIMESTRES: 4, SUCURSALES: 5,
+    nomSuc: ["", "Centro", "Norte", "Sur", "Este", "Oeste"],
     archivo: [], matriz: [], isAnimating: false, isPaused: false,
     
     init() {
@@ -8,10 +10,12 @@ const Sim2 = {TRIMESTRES: 4, SUCURSALES: 5,
             suc: Math.floor(Math.random()*this.SUCURSALES + 1),
             ventas: Math.floor(Math.random()*100 + 5)
         }));
+        
         this.matriz = Array(this.TRIMESTRES + 2).fill().map(() => Array(this.SUCURSALES + 1).fill(0));
+        
         this.render();
         document.getElementById('console-2').innerHTML = '';
-        writeCon('console-2', `> Cargados ${this.archivo.length} registros de ventas.`);
+        writeCon('console-2', `> Archivo cargado (${this.archivo.length} registros).`);
         
         this.isAnimating = false; this.isPaused = false;
         setButtons(2, false, true, true, false, false);
@@ -19,23 +23,26 @@ const Sim2 = {TRIMESTRES: 4, SUCURSALES: 5,
     render() {
         const t = document.getElementById('matrix-2'); t.innerHTML = '';
         let thead = '<tr class="table-light"><th class="border-0"></th>';
-        for(let j=1; j<=this.SUCURSALES; j++) { thead += `<th>Sucursal ${j}</th>`; }
-        t.innerHTML += `<thead>${thead}</tr></thead>`;
+        for(let j=1; j<=this.SUCURSALES; j++) { thead += `<th>${this.nomSuc[j]}</th>`; }
+        t.innerHTML += `<thead>${thead}</thead>`;
         
         let tbody = document.createElement('tbody');
         for(let i=1; i<=this.TRIMESTRES+1; i++) {
             let tr = document.createElement('tr');
-            let thClass = (i <= this.TRIMESTRES) ? 'bg-light' : 'table-secondary border-secondary';
-            tr.innerHTML = `<td class="text-end fw-bold align-middle text-nowrap ${thClass}">${i <= this.TRIMESTRES ? 'Trimestre '+i : 'TOTAL SUC.'}</td>`;
+            let isTotal = i === this.TRIMESTRES+1;
+            let title = isTotal ? 'Total Anual' : `Trimestre ${i}`;
+            let thClass = isTotal ? 'table-secondary border-secondary' : 'bg-light';
+            
+            tr.innerHTML = `<td class="text-end fw-bold align-middle text-nowrap ${thClass}">${title}</td>`;
             for(let j=1; j<=this.SUCURSALES; j++) {
-                let cls = (i === this.TRIMESTRES+1) ? 'table-secondary fw-bold text-dark' : 'bg-white';
-                tr.innerHTML += `<td id="s2-c${i}-${j}" class="${cls}">0 v.</td>`;
+                let cls = isTotal ? 'table-secondary fw-bold text-dark' : 'bg-white';
+                tr.innerHTML += `<td id="s2-c${i}-${j}" class="${cls}">0</td>`;
             }
             tbody.appendChild(tr);
         }
         t.appendChild(tbody);
     },
-    updateDOM(i, j) { document.getElementById(`s2-c${i}-${j}`).innerText = `${this.matriz[i][j]} v.`; },
+    updateDOM(i, j) { document.getElementById(`s2-c${i}-${j}`).innerText = this.matriz[i][j]; },
     
     async step() {
         if(this.archivo.length === 0) return this.end();
@@ -80,8 +87,8 @@ const Sim2 = {TRIMESTRES: 4, SUCURSALES: 5,
     
     end() { writeCon('console-2', '> [EOF] Fin.'); setButtons(2, true, false, false, false, true); },
     results() {
-        writeCon('console-2', '\n--- VENTAS TOTALES ---');
-        for(let j=1; j<=this.SUCURSALES; j++) writeCon('console-2', `> Sucursal ${j}: ${this.matriz[this.TRIMESTRES+1][j]} v.`);
+        writeCon('console-2', '\n--- RESUMEN ---');
+        for(let j=1; j<=this.SUCURSALES; j++) writeCon('console-2', `> ${this.nomSuc[j]}: ${this.matriz[this.TRIMESTRES+1][j]} ventas`);
         setButtons(2, true, false, false, false, false);
     }
 };
